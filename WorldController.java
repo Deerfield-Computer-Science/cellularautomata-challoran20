@@ -10,6 +10,7 @@ public class WorldController extends GraphicsProgram {
 	private GCanvas theWorldCanvas;
 	public static final int APPLICATION_WIDTH = 200;
 	public static final int APPLICATION_HEIGHT = 200;
+	public LifeForm cow;
 	
 	public void run(){	
 		setUpWorld();
@@ -25,6 +26,22 @@ public class WorldController extends GraphicsProgram {
 		theWorld.getCreatureList().add( new Grass( new Location(3,6), theWorld ));
 		theWorld.getCreatureList().add( new Grass( new Location(4,6), theWorld ));
 		theWorldCanvas = this.getGCanvas();
+
+		cow.setMyLocation(new Location (5,6));
+		cow.setAge(2);
+		cow.setMyColor(Color.white);
+		cow.setMyLifeSpan(10);
+		theWorld.getCreatureList().add(cow);
+		theWorldCanvas = this.getGCanvas();
+		
+		for (int i=0; i <10; i ++) {
+			cow.setMyLocation(new Location (i, 6));
+			pause(20);
+		}
+		
+		cow.reproduce();
+		
+		
 	}
 	
 	public void runWorld(){
